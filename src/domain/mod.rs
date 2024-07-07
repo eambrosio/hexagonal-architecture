@@ -1,2 +1,2 @@
 mod create_car;
-mod entities;
+pub mod entities;

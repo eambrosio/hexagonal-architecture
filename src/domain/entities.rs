@@ -1,3 +1,4 @@
+#[derive(PartialEq, Clone)]
 pub struct CarNumber(u16);
 
 impl TryFrom<u16> for CarNumber {
@@ -55,6 +56,7 @@ impl TryFrom<Vec<String>> for CarTypes {
 
 enum CarType {
     Electric,
+    Hybrid,
 }
 
 impl TryFrom<String> for CarType {
@@ -63,7 +65,24 @@ impl TryFrom<String> for CarType {
     fn try_from(value: String) -> Result<Self, Self::Error> {
         match value.as_str() {
             "Electric" => Ok(Self::Electric),
+            "Hybrid" => Ok(Self::Hybrid),
             _ => Err(()),
+        }
+    }
+}
+
+pub struct Car {
+    pub number: CarNumber,
+    name: CarName,
+    types: CarTypes,
+}
+
+impl Car {
+    pub fn new(number: CarNumber, name: CarName, types: CarTypes) -> Self {
+        Self {
+            number,
+            name,
+            types,
         }
     }
 }
