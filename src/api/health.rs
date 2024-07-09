@@ -1,5 +1,13 @@
-use axum::response::IntoResponse;
+use axum::Json;
+use serde::Serialize;
 
-pub async fn handler() -> impl IntoResponse {
-    "ok"
+#[derive(Serialize)]
+pub struct Response {
+    message: String,
+}
+
+pub async fn handler() -> Json<Response> {
+    Json(Response {
+        message: String::from("ok"),
+    })
 }
